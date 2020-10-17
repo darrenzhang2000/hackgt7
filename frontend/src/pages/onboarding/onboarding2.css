@@ -1,0 +1,13 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    width: 240px;
+}
+
+.space {
+    height: 20px;
+}
