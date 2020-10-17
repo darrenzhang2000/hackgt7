@@ -1,0 +1,11 @@
+.banks {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    min-width: 200px;
+}
+
+img {
+    width: 50px;
+    height: auto;
+}
