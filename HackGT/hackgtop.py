@@ -17,7 +17,8 @@ app = Flask(__name__)
 
 @app.route('/getport')
 def GetPort(): #tickers = ['BSX','AES','BRK-B','SEE','QQQ','SPY'], first = 0, funds = 10000):
-    tickers=request.args.get('tickers')
+    ticks=request.args.get('tickers')
+    tickers = list(ticks.split(" "))
     first=request.args.get('first')
     funds = request.args.get('Funds')
     
@@ -34,7 +35,7 @@ def GetPort(): #tickers = ['BSX','AES','BRK-B','SEE','QQQ','SPY'], first = 0, fu
     
     mu = expected_returns.mean_historical_return(df_stocks)
     Sigma = risk_models.sample_cov(df_stocks)
-    if first == 1:
+    if int(first) == 1:
         ef = EfficientFrontier(mu, Sigma, weight_bounds=(0,1))
     else:
         ef = EfficientFrontier(mu, Sigma, weight_bounds=(-1,1))
@@ -47,7 +48,7 @@ def GetPort(): #tickers = ['BSX','AES','BRK-B','SEE','QQQ','SPY'], first = 0, fu
     
     latest_prices = get_latest_prices(df_stocks)
     
-    da = DiscreteAllocation(cleaned_weights, latest_prices, total_portfolio_value=funds)
+    da = DiscreteAllocation(cleaned_weights, latest_prices, total_portfolio_value=int(funds))
     allocation, leftover = da.lp_portfolio()
     #print("Discrete allocation:", allocation)
     #print("Funds remaining: ${:.2f}".format(leftover))
@@ -60,6 +61,3 @@ def GetPort(): #tickers = ['BSX','AES','BRK-B','SEE','QQQ','SPY'], first = 0, fu
     #print(allocjson)
     return jsonify(allocation = new_alloc,
                    leftover = leftover)
-                   #sharpe = sharpe_pfolio)
-
-#GetPort(first = 1)
