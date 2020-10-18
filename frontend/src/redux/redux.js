@@ -4,10 +4,22 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 const STORE_EMAIL = 'STORE_EMAIL';
 const STORE_USER_PROFILE = 'STORE_USER_PROFILE'
+const STORE_BANK_ACCOUNTS = 'STORE_BANK_ACCOUNTS'
+
 
 const initialState = {
     email: "d",
+    accounts: []
+}
 
+export function storeBankAccounts(accounts){
+    console.log('store acocunts')
+    return {
+        type: STORE_BANK_ACCOUNTS,
+        payload: {
+            accounts: accounts
+        }
+    }
 }
 
 export function storeEmail(email){
@@ -53,6 +65,13 @@ function userReducer(state=initialState, action){
                 major: major
             }
         
+        case STORE_BANK_ACCOUNTS:
+            const {accounts} = payload.accounts
+            return {
+                ...state,
+                accounts
+            }
+
         default:
             return state
     }

@@ -10,6 +10,7 @@ import Footer from './component/bottom/bottom.component'
 import Onboarding1 from './pages/onboarding/onboarding1.page';
 import onboarding2 from './pages/onboarding/onboarding2.page';
 import Onboarding3 from './pages/onboarding/onboarding3.page';
+import Account from './pages/onboarding/account.page';
 
 
 
@@ -21,6 +22,7 @@ function App() {
       <Header />
       <Route exact path='/' component={Landing} />
       <Route exact path='/register' component={Register} />
+      <Route exact path='/account' component={Account} />
       <Route exact path='/onboarding1' component={Onboarding1} />
       <Route exact path='/onboarding2' component={onboarding2} />
       <Route exact path='/onboarding3' component={Onboarding3} />
